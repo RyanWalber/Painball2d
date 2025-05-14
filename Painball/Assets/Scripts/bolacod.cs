@@ -14,7 +14,7 @@ public class bolacod : MonoBehaviour
     void Update()
     {
         // Reinicia a bola se ela cair abaixo da mesa
-        if (transform.position.y < -10f)
+        if (transform.position.y < -90f)
         {
             ReiniciarBola();
         }
