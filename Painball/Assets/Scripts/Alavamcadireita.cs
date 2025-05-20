@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Alavancaesquerda : MonoBehaviour
+public class Alavancadireita: MonoBehaviour
 {
-    public KeyCode inputKey = KeyCode.LeftArrow;
+    public KeyCode inputKey = KeyCode.RightArrow;
     private HingeJoint2D hinge;
 
     void Start()
@@ -16,11 +16,11 @@ public class Alavancaesquerda : MonoBehaviour
 
         if (Input.GetKey(inputKey))
         {
-            motor.motorSpeed = -500; // ou positivo, dependendo do lado
+            motor.motorSpeed = 500; // ou positivo, dependendo do lado
         }
         else
         {
-            motor.motorSpeed = 1000; // volta ao ponto inicial
+            motor.motorSpeed = -1000; // volta ao ponto inicial
         }
 
         hinge.motor = motor;
