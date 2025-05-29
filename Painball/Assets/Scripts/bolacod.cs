@@ -6,7 +6,7 @@ public class bolacod : MonoBehaviour
     private Rigidbody2D rb;
     private bool lancada = false;
 
-    [Header("Lançamento")]
+    [Header("Lanï¿½amento")]
     public KeyCode teclaLancar = KeyCode.Space;
     public float forcaLancamento = 10f;
 
@@ -18,10 +18,10 @@ public class bolacod : MonoBehaviour
 
     void Update()
     {
-        // Lançamento ao pressionar tecla
+        // Lanï¿½amento ao pressionar tecla
         if (Input.GetKeyDown(teclaLancar) && !lancada)
         {
-            rb.velocity = new Vector2(forcaLancamento, 0f); // Lança na horizontal
+            rb.linearVelocity = new Vector2(forcaLancamento, 0f); // Lanï¿½a na horizontal
             lancada = true;
         }
 
@@ -35,7 +35,7 @@ public class bolacod : MonoBehaviour
     void ReiniciarBola()
     {
         transform.position = posicaoInicial;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
         lancada = false;
     }
