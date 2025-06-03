@@ -8,20 +8,19 @@ public class FimDeJogo : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(tagDaBola))
         {
-            EncerrarJogo();
+            ReiniciarBola(collision.gameObject);
         }
     }
 
-    void EncerrarJogo()
+    void ReiniciarBola(GameObject bola)
     {
-        Debug.Log("Fim de jogo!");
+        Rigidbody2D rb = bola.GetComponent<Rigidbody2D>();
 
-#if UNITY_EDITOR
-        // Para parar o jogo no Editor
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        // Para fechar o jogo no build
-        Application.Quit();
-#endif
+        if (rb != null)
+        {
+            bola.transform.position = new Vector2(5.89f, 63);
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
     }
 }

@@ -6,28 +6,32 @@ public class bolacod : MonoBehaviour
     private Rigidbody2D rb;
     private bool lancada = false;
 
-    [Header("Lan�amento")]
+    [Header("Lançamento")]
     public KeyCode teclaLancar = KeyCode.Space;
     public float forcaLancamento = 10f;
+
+    [Header("Acelerador")]
+    public float multiplicadorVelocidade = 1.05f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         posicaoInicial = transform.position;
+        ReiniciarBola();
     }
 
     void Update()
     {
-        // Lan�amento ao pressionar tecla
         if (Input.GetKeyDown(teclaLancar) && !lancada)
         {
-            rb.linearVelocity = new Vector2(forcaLancamento, 0f); // Lan�a na horizontal
+            Debug.Log("Lançando bola...");
+            rb.velocity = new Vector2(forcaLancamento, 0f);
             lancada = true;
         }
 
-        // Reinicia a bola se ela cair abaixo da mesa
         if (transform.position.y < -90f)
         {
+            Debug.Log("Bola caiu, reiniciando...");
             ReiniciarBola();
         }
     }
@@ -35,8 +39,18 @@ public class bolacod : MonoBehaviour
     void ReiniciarBola()
     {
         transform.position = posicaoInicial;
-        rb.linearVelocity = Vector2.zero;
+        rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
         lancada = false;
+        Debug.Log("Bola reiniciada.");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (lancada)
+        {
+            rb.velocity *= multiplicadorVelocidade;
+            Debug.Log("Colisão - velocidade aumentada.");
+        }
     }
 }
