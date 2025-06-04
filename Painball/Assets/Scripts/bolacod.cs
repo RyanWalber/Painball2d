@@ -25,7 +25,7 @@ public class bolacod : MonoBehaviour
         if (Input.GetKeyDown(teclaLancar) && !lancada)
         {
             Debug.Log("Lançando bola...");
-            rb.velocity = new Vector2(forcaLancamento, 0f);
+            rb.linearVelocity = new Vector2(forcaLancamento, 0f);
             lancada = true;
         }
 
@@ -39,7 +39,7 @@ public class bolacod : MonoBehaviour
     void ReiniciarBola()
     {
         transform.position = posicaoInicial;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
         lancada = false;
         Debug.Log("Bola reiniciada.");
@@ -49,7 +49,7 @@ public class bolacod : MonoBehaviour
     {
         if (lancada)
         {
-            rb.velocity *= multiplicadorVelocidade;
+            rb.linearVelocity *= multiplicadorVelocidade;
             Debug.Log("Colisão - velocidade aumentada.");
         }
     }

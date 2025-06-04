@@ -19,7 +19,7 @@ public class FimDeJogo : MonoBehaviour
         if (rb != null)
         {
             bola.transform.position = new Vector2(5.89f, 63);
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
         }
     }
